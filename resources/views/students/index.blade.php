@@ -1,5 +1,14 @@
 @extends('templates.default')
 
+@php
+    $title = 'Data Siswa';
+    $preTitle = 'Semua Data';
+@endphp
+
+@push('page-action')
+    <a href="{{ route('students.create') }}" class="btn btn-primary">Tambah Data</a>
+@endpush
+
 @section('content')
     <div class="card">
         <div class="table-responsive">
@@ -21,7 +30,7 @@
                             <td>{{ $student->phone_number }}</td>
                             <td>{{ $student->class }}</td>
                             <td>
-                                <a href="#">Edit</a>
+                                <a href="{{ route('students.edit', $student->id) }}">Edit</a>
                             </td>
                         </tr>
                     @endforeach
