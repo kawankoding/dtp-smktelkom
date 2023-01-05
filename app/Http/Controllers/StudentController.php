@@ -30,10 +30,17 @@ class StudentController extends Controller
 
         $student = new Student();
 
+        $photo = null;
+
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo')->store('photo');
+        }
+
         $student->name = $request->name;
         $student->address = $request->address;
         $student->phone_number = $request->phone_number;
         $student->class = $request->class;
+        $student->photo = $photo;
 
         $student->save();
 

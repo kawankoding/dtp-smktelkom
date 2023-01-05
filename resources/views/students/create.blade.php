@@ -8,7 +8,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('students.store') }}" class="" method="post">
+            <form action="{{ route('students.store') }}" class="" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label class="form-label">Nama</label>
@@ -47,13 +47,22 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Kelas</label>
+                    <label class="form-label">Foto</label>
                     <input type="text" name="class"
                         class="form-control @error('class')
                             is-invalid
                         @enderror"
                         name="example-text-input" placeholder="Tulis Kelas" value="{{ old('class') }}">
                     @error('class')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Kelas</label>
+                    <input type="file" name="photo" class="form-control @error('photo') is-invalid @enderror"
+                        name="example-text-input" placeholder="Tulis Kelas" value="{{ old('photo') }}">
+                    @error('photo')
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>

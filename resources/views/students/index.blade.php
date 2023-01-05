@@ -19,6 +19,7 @@
                         <th>Address</th>
                         <th>Phone</th>
                         <th>CLass</th>
+                        <th>Foto</th>
                         <th class="w-1"></th>
                     </tr>
                 </thead>
@@ -29,6 +30,9 @@
                             <td>{{ $student->address }}</td>
                             <td>{{ $student->phone_number }}</td>
                             <td>{{ $student->class }}</td>
+                            <td>
+                                <img src="{{ asset('storage/' . $student->photo) }}" alt="" height="100px">
+                            </td>
                             <td>
                                 <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <form action="{{ route('students.destroy', $student->id) }}" method="post">
