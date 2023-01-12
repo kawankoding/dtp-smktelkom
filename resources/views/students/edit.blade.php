@@ -8,7 +8,8 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('students.update', $student->id) }}" class="" method="post">
+            <form action="{{ route('students.update', $student->id) }}" class="" method="post"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
@@ -56,6 +57,15 @@
                         @enderror"
                         name="example-text-input" placeholder="Tulis Kelas" value="{{ old('class') ?? $student->class }}">
                     @error('class')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Foto</label>
+                    <input type="file" name="photo" class="form-control @error('photo') is-invalid @enderror"
+                        name="example-text-input" placeholder="Foto" value="{{ old('photo') }}">
+                    @error('photo')
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>

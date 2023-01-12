@@ -29,7 +29,7 @@
                             <td>{{ $student->name }}</td>
                             <td>{{ $student->address }}</td>
                             <td>{{ $student->phone_number }}</td>
-                            <td>{{ $student->class }}</td>
+                            <td>{{ $student->student_class_id }}</td>
                             <td>
                                 <img src="{{ asset('storage/' . $student->photo) }}" alt="" height="100px">
                             </td>

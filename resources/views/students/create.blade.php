@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Foto</label>
+                    <label class="form-label">Kelas</label>
                     <input type="text" name="class"
                         class="form-control @error('class')
                             is-invalid
@@ -60,8 +60,20 @@
 
                 <div class="mb-3">
                     <label class="form-label">Kelas</label>
+                    <select name="student_class_id" id="" class="form-control">
+                        @foreach ($classes as $class)
+                            <option value="{{ $class->id }}">{{ $class->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('class')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Foto</label>
                     <input type="file" name="photo" class="form-control @error('photo') is-invalid @enderror"
-                        name="example-text-input" placeholder="Tulis Kelas" value="{{ old('photo') }}">
+                        name="example-text-input" placeholder="Foto" value="{{ old('photo') }}">
                     @error('photo')
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
