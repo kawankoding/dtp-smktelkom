@@ -51,12 +51,12 @@
 
                 <div class="mb-3">
                     <label class="form-label">Kelas</label>
-                    <input type="text" name="class"
-                        class="form-control @error('class')
-                            is-invalid
-                        @enderror"
-                        name="example-text-input" placeholder="Tulis Kelas" value="{{ old('class') ?? $student->class }}">
-                    @error('class')
+                    <select name="student_class_id" id="" class="form-control">
+                        @foreach ($classes as $class)
+                            <option value="{{ $class->id }}" @selected($class->id == $student->student_class_id)>{{ $class->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('student_class_id')
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>

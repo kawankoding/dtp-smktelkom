@@ -29,7 +29,6 @@ class StudentController extends Controller
             'name' => ['required', 'min:3'],
             'address' => ['required', 'min:10'],
             'phone_number' => ['required', 'numeric'],
-            'class' => ['required'],
         ]);
 
         $student = new Student();
@@ -43,8 +42,6 @@ class StudentController extends Controller
         $student->name = $request->name;
         $student->address = $request->address;
         $student->phone_number = $request->phone_number;
-        $student->class = $request->class;
-        $student->class = $request->class;
         $student->student_class_id = $request->student_class_id;
         $student->photo = $photo;
 
@@ -61,6 +58,7 @@ class StudentController extends Controller
 
         return view('students.edit', [
             'student' => $student,
+            'classes' => StudentClass::get(),
         ]);
     }
 
@@ -70,16 +68,17 @@ class StudentController extends Controller
             'name' => ['required', 'min:3'],
             'address' => ['required', 'min:10'],
             'phone_number' => ['required', 'numeric'],
-            'class' => ['required'],
         ]);
 
         $student = Student::find($id);
 
-        $photo = null;
+        $photo = $student->photo;
 
         if ($request->hasFile('photo')) {
-            if (Storage::exists($student->photo)) {
-                Storage::delete($student->photo);
+            if ($photo != null) {
+                if (Storage::exists($photo)) {
+                    Storage::delete($photo);
+                }
             }
             $photo = $request->file('photo')->store('photo');
         }
@@ -87,7 +86,7 @@ class StudentController extends Controller
         $student->name = $request->name;
         $student->address = $request->address;
         $student->phone_number = $request->phone_number;
-        $student->class = $request->class;
+        $student->student_class_id = $request->student_class_id;
         $student->photo = $photo;
 
         $student->save();
